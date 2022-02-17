@@ -1,0 +1,13 @@
+support 받은 코드 - Mybatis / Ajax통신 / Transaction / chart / mvcTiles / 
+
+금요일 // < 리액트 + Springboot - (ajax : restAPI)  >
+
+화요일, 수요일 // Numpy, Pandas (분량이 많다)
+
+데이터 수집계획서 
+
+RestAPI - > mvc, react, 엘라스틱서치에 사용 : 공통분모라는 생각으로 한번 익혀서 여러군데 사용
+
+skieam : 알고리즘 소스코드
+
+디장고와 스프링연동

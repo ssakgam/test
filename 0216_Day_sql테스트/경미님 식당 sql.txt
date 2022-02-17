@@ -1,0 +1,14 @@
+--id가 7번인 사람이 follow한 인간,가게,게시글
+select * from follow where follower = 7 and target_name ='c';
+select * from follow where follower = 7 and target_name ='s';
+select * from follow where follower = 7 and target_name ='p';
+
+--id가 5번인 인간을 follow한 사람수
+select count(*) from follow where target_name = 'c' and target_id =5;
+
+--각 store를 follow하고 있는 인간수 
+select s.id, s.name, count(*)over(PARTITION BY f.target_id)
+    from store s
+    join follow f
+    on s.id = f.target_id
+    and f.target_name = 's';

@@ -1,0 +1,76 @@
+-- ==========================================================
+--select * from search_word
+--select * from follow
+--select * from hash_tag 
+--select * from hash_tag_rel 
+-- ==========================================================
+-- ========================search_word insert=======================
+
+-- search_word 더미를 넣으려면 account 더미도 함께 넣어주어야함
+-- insert문
+
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '희주네 피자나라', 1, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '우빈닭발', 2, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '도가니탕', 3, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '오돌뼈', 4, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '다운초밥집', 5, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '피자', 6, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '숯불갈비', 7, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '영주곰탕', 8, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '김밥', 9, '2022-02-15');
+insert into search_word(id, word, accid, search_time) values(search_word_seq.nextval, '짜장면', 10, '2022-02-15');
+
+-- ==================== follow insert =======================
+-- id, target_name, target_id number, follower number
+
+
+insert into follow values (follow_seq.nextVal, 's', 2, 5);
+insert into follow values (follow_seq.nextVal, 's', 3, 5);
+insert into follow values (follow_seq.nextVal, 's', 4, 5);
+insert into follow values (follow_seq.nextVal, 's', 5, 9);
+insert into follow values (follow_seq.nextVal, 'c', 5, 6);
+insert into follow values (follow_seq.nextVal, 'c', 5, 7);
+insert into follow values (follow_seq.nextVal, 'c', 5, 8);
+insert into follow values (follow_seq.nextVal, 'p', 1, 3);
+insert into follow values (follow_seq.nextVal, 'p', 2, 3);
+insert into follow values (follow_seq.nextVal, 'p', 3, 3);
+insert into follow values (follow_seq.nextVal, 'p', 2, 3);
+
+commit;
+
+--=====================hash_tag insert======================
+-- hash_tag table
+-- food category인지, theme 카테고리인지 or 리뷰에 달린 아무런 문장, other hash tag인지..?
+-- 아니면 뭐.. 긍/부..? 뭘 해야하지
+-- id, category(menu,theme,rate), 'tag_word'
+
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '분식');
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '일식');
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '한식');
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '양식');
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '분식');
+insert into hash_tag values(hash_tag_seq.nextVal, 'theme', '비오는날');
+insert into hash_tag values(hash_tag_seq.nextVal, 'rate', '만족');
+insert into hash_tag values(hash_tag_seq.nextVal, 'rate', '별로야');
+insert into hash_tag values(hash_tag_seq.nextVal, 'rate', '노맛');
+insert into hash_tag values(hash_tag_seq.nextVal, 'menu', '분식');
+                                    
+--=====================hash_tag_rel insert====================  
+-- hash_tag 테이블 insert후 사용
+-- id, target_name, target_id, hash_tag_id               
+-- c : 관심도, s : 식당, p : 게시글
+
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'c', 1, 1);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'c', 2, 2);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'c', 3, 3);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'c', 1, 4); 
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 's', 1,5); 
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 's', 1,6);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'p', 1,7);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'p', 2,8);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'p', 3,9);
+insert into hash_tag_rel values(hash_tag_rel_seq.nextVal, 'p', 4,10);
+
+
+commit;
+

@@ -1,0 +1,60 @@
+-- 검색은 차마 못건드렸습니다
+
+
+-- 가게 디테일 화면에 띄워줄 정보를 가져오는 함수입니다.
+	
+	select s.id, s.name, s.address, s.phone, ht.tag_word, sm.price, s.running_time, sm.m_name
+	from store s, store_menu sm, hash_tag ht, hash_tag_rel htr
+	where s.id = sm.storeid_fk
+	and s.id = htr.target_id
+	and htr.hashtag_id = ht.id
+	and s.id = :id;
+
+-- 해당 가게에서 판매하는 메뉴 정보를 가져오는 함수입니다.
+
+            select sm.id, sm.m_name
+            from store s, store_menu sm
+            where s.id = sm.storeid_fk
+            and s.id=:id
+
+-- 헤당 가게에 달린 게시글 목록 출력
+
+            select p.id, p.title, p.content, LPAD('⭐⭐⭐⭐⭐',p.star_rate,'⭐'), p.update_date
+            from store s, post p
+            where s.id = p.storeid_fk
+            and s.id=:id
+
+-- 가게 이미지파일 정보 가져오기
+
+        select upload_path, file_name
+          from post_file
+         where target_id = :id
+           and target_name = 's'
+
+-- 사진 이름 가져오기
+
+ 	select upload_path ,file_name
+	from post_file
+	where target_id=:id
+
+-- ==================================================
+-- 가게 대문삭제 
+
+	delete from post_file where target_id=:id and target_name = 's'
+-- ==================================================
+
+--id가 7번인 사람이 follow한 인간,가게,게시글
+select * from follow where follower = 7 and target_name ='c';
+select * from follow where follower = 7 and target_name ='s';
+select * from follow where follower = 7 and target_name ='p';
+
+--id가 5번인 인간을 follow한 사람수
+select count(*) from follow where target_name = 'c' and target_id =5;
+
+--각 store를 follow하고 있는 인간수 
+select s.id, s.name, count(*)over(PARTITION BY f.target_id)
+    from store s
+    join follow f
+    on s.id = f.target_id
+    and f.target_name = 's';
+
